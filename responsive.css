@@ -1,1 +1,123 @@
+/**
+ * Responsive Styles for Sheikh Academy
+ * Features: Desktop-first approach, Mobile-top navigation, and adaptive paper scaling.
+ * [পয়েন্ট ২, ১১, ১৭, ২২ - মোবাইল ও কম্পিউটারের আলাদা লেআউট]
+ */
 
+/* ১. বড় স্ক্রিন (ডেস্কটপ) - ডিফল্ট লেআউট */
+@media screen and (min-width: 1025px) {
+    .editor-app-container {
+        flex-direction: row;
+    }
+    
+    .sa-sidebar {
+        width: 320px;
+        height: 100vh;
+        position: sticky;
+        top: 0;
+    }
+
+    .main-editor-area {
+        flex: 1;
+        padding: 40px;
+        overflow-y: auto;
+    }
+}
+
+/* ২. মাঝারি স্ক্রিন (ট্যাবলেট) */
+@media screen and (max-width: 1024px) {
+    .board-paper {
+        width: 95%; /* কাগজের প্রস্থ কমিয়ে দেওয়া */
+        padding: 15mm;
+        margin: 10px auto;
+    }
+
+    .questions-container {
+        column-gap: 20px; /* কলামের দূরত্ব কমানো */
+    }
+}
+
+/* ৩. ছোট স্ক্রিন (মোবাইল) [পয়েন্ট ১৭ - উপরে সেটিংস প্যানেল] */
+@media screen and (max-width: 767px) {
+    .editor-app-container {
+        flex-direction: column; /* এলিমেন্টগুলো উপর-নিচ হবে */
+    }
+
+    /* সাইডবার মোবাইলে টপ-বারে রূপান্তরিত হবে */
+    .sa-sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        border-left: none;
+        border-bottom: 2px solid #ddd;
+    }
+
+    .control-header {
+        padding: 10px 15px;
+    }
+
+    .control-body {
+        max-height: 250px; /* মোবাইলে সেটিংস যেন বেশি জায়গা না নেয় */
+        overflow-y: auto;
+        padding: 10px;
+    }
+
+    /* প্রশ্নপত্র মোবাইলে স্ক্রিন অনুযায়ী স্কেল হবে (পয়েন্ট ১১) */
+    .board-paper {
+        width: 100%;
+        min-height: auto;
+        padding: 10px;
+        margin: 0;
+        font-size: 14px; /* টেক্সট সাইজ কিছুটা কমানো */
+        transform-origin: top center;
+    }
+
+    /* মোবাইল ভিউতে ৩ কলামের বদলে ১ বা ২ কলাম অগ্রাধিকার পাবে */
+    .questions-container {
+        column-count: 1 !important; /* মোবাইলে পড়া সুবিধাজনক করতে ১ কলাম */
+    }
+
+    .options-grid {
+        grid-template-columns: 1fr; /* অপশনগুলোও উপর-নিচ হবে */
+    }
+
+    /* ভাসমান টুলবার মোবাইলে নিচে থাকবে যেন টাইপ করতে সুবিধা হয় */
+    .floating-toolbar {
+        top: auto;
+        bottom: 20px;
+        width: 90%;
+        border-radius: 10px;
+    }
+    
+    .omr-grid {
+        grid-template-columns: 1fr; /* ওএমআর রো একটির নিচে একটি আসবে */
+    }
+}
+
+/* ৪. অতি ক্ষুদ্র স্ক্রিন (বোর্ড স্টাইল ঠিক রাখা) */
+@media screen and (max-width: 480px) {
+    .exam-header h2 {
+        font-size: 16px;
+    }
+    
+    .header-meta {
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+    }
+    
+    .sa-watermark {
+        font-size: 40px !important;
+    }
+}
+
+/* ৫. প্রিন্ট করার সময় যা যা বাদ যাবে [পয়েন্ট ৪] */
+@media print {
+    .sa-sidebar, .floating-toolbar, .action-buttons, .control-header {
+        display: none !important;
+    }
+    
+    body {
+        background-color: #fff;
+    }
+}
