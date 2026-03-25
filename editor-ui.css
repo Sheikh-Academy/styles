@@ -1,1 +1,174 @@
+/**
+ * Editor UI Styles for Sheikh Academy
+ * Features: Control Panel styling, Toolbar design, Buttons, and Layout adjustments.
+ * [পয়েন্ট ২ - এডিটর প্যানেলের ডিজাইন]
+ */
 
+/* ১. মেইন ইন্টারফেস কন্টেইনার */
+.editor-app-container {
+    display: flex;
+    height: 100vh;
+    background-color: #f0f2f5;
+    overflow: hidden;
+}
+
+/* ২. কন্ট্রোল প্যানেল / সাইডবার ডিজাইন */
+.sa-sidebar {
+    width: 320px;
+    background: #ffffff;
+    border-left: 1px solid #d1d5db;
+    display: flex;
+    flex-direction: column;
+    box-shadow: -2px 0 10px rgba(0,0,0,0.05);
+    z-index: 1000;
+}
+
+.control-header {
+    padding: 20px;
+    background: #2c3e50;
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.control-header h4 {
+    margin: 0;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+}
+
+/* ৩. সেটিংস গ্রুপ এবং ইনপুট ডিজাইন */
+.control-body {
+    padding: 15px;
+    flex: 1;
+    overflow-y: auto;
+}
+
+.control-group {
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 15px;
+}
+
+.control-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #4b5563;
+    margin-bottom: 8px;
+}
+
+.control-group select, 
+.control-group input[type="text"], 
+.control-group input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+/* ৪. ফ্লোটিং টুলবার (বোল্ড, ইটালিক ইত্যাদির জন্য) */
+.floating-toolbar {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ffffff;
+    padding: 10px;
+    border-radius: 30px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    display: flex;
+    gap: 10px;
+    z-index: 1100;
+}
+
+.toolbar-btn {
+    width: 35px;
+    height: 35px;
+    border: none;
+    background: #f3f4f6;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.toolbar-btn:hover {
+    background: #3498db;
+    color: #ffffff;
+}
+
+/* ৫. একশন বাটন ডিজাইন (পিডিএফ/ওয়ার্ড) */
+.action-buttons {
+    padding: 20px;
+    border-top: 1px solid #e5e7eb;
+}
+
+.btn-main {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 10px;
+    transition: opacity 0.3s;
+}
+
+.btn-pdf { background-color: #e74c3c; color: white; }
+.btn-word { background-color: #2980b9; color: white; }
+.btn-save { background-color: #27ae60; color: white; }
+
+.btn-main:hover { opacity: 0.9; }
+
+/* ৬. সুইচ বাটন (Toggle Switch) */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+}
+
+.switch input { opacity: 0; width: 0; height: 0; }
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 20px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px; width: 16px;
+    left: 2px; bottom: 2px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider { background-color: #2ecc71; }
+input:checked + .slider:before { transform: translateX(20px); }
+
+/* ৭. মোবাইল ভিউ সেটিংস */
+@media (max-width: 768px) {
+    .editor-app-container { flex-direction: column; }
+    .sa-sidebar { 
+        width: 100%; 
+        height: auto; 
+        position: relative; 
+        border-left: none;
+        border-bottom: 1px solid #ddd;
+    }
+    .control-body { display: none; } /* মোবাইলে ডিফল্টভাবে সেটিংস বন্ধ থাকবে */
+    .control-body.active { display: block; }
+}
