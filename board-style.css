@@ -1,1 +1,122 @@
+/**
+ * Board Style CSS for Sheikh Academy
+ * Features: A4 Paper simulation, MCQ Multi-column layout, Board-standard Typography.
+ * [পয়েন্ট ১১, ২২ - সাদা পাতায় বোর্ড স্টাইল ও ২/৩ কলাম]
+ */
 
+/* ১. পেপার সিমুলেশন (ব্রাউজারে এডিটরটি সাদা কাগজের মতো দেখাবে) */
+.board-paper {
+    background: #ffffff;
+    width: 210mm; /* A4 Width */
+    min-height: 297mm; /* A4 Height */
+    margin: 20px auto;
+    padding: 20mm;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    position: relative;
+    box-sizing: border-box;
+    color: #000000;
+    line-height: 1.5;
+    word-wrap: break-word;
+    overflow: hidden;
+}
+
+/* ২. ফন্ট ফ্যামিলি লজিক (পয়েন্ট ১১) */
+.board-paper, .board-paper * {
+    font-family: 'Kalpurush', 'Times New Roman', serif;
+}
+
+/* ৩. বোর্ড পরীক্ষার হেডার স্টাইল (পয়েন্ট ১৯) */
+.exam-header {
+    text-align: center;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #000;
+    padding-bottom: 10px;
+}
+
+.exam-header h2 { margin: 5px 0; font-size: 22px; }
+.exam-header p { margin: 2px 0; font-size: 16px; }
+
+.header-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+/* ৪. বহুনির্বাচনী প্রশ্ন লেআউট (পয়েন্ট ২২ - ২/৩ কলাম) */
+.questions-container {
+    column-count: 2; /* ডিফল্ট ২ কলাম */
+    column-gap: 40px;
+    column-rule: 1px dashed #ccc; /* কলাম ডিভাইডার */
+    text-align: justify;
+}
+
+.mcq-item {
+    break-inside: avoid; /* প্রশ্ন যেন মাঝখান থেকে ভেঙ্গে না যায় */
+    margin-bottom: 15px;
+}
+
+.question-text {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* অপশনগুলোও ২ কলামে */
+    gap: 5px;
+}
+
+.option-item {
+    font-size: 14px;
+}
+
+/* ৫. সৃজনশীল প্রশ্ন লেআউট (সৃজনশীলে সাধারণত ১ কলাম থাকে) */
+.creative-container {
+    column-count: 1 !important;
+    margin-top: 30px;
+}
+
+.stimulus-box {
+    font-style: italic;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-left: 3px solid #000;
+}
+
+/* ৬. জলছাপের স্টাইল (পয়েন্ট ২০) */
+#sa-watermark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    font-size: 70px;
+    color: rgba(0,0,0,0.05);
+    pointer-events: none;
+    z-index: 0;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* ৭. ওএমআর সেকশন (পয়েন্ট ১৭) */
+.omr-wrapper {
+    page-break-before: always; /* ওএমআর যেন নতুন পাতায় বা শেষে যায় */
+}
+
+/* ৮. প্রিন্ট অপ্টিমাইজেশন (পয়েন্ট ৪) */
+@media print {
+    body { background: none; padding: 0; }
+    .board-paper { 
+        box-shadow: none; 
+        margin: 0; 
+        width: 100%; 
+    }
+    .sa-sidebar, .sa-top-bar, button { display: none !important; } /* প্রিন্টে বাটন আসবে না */
+}
+
+/* ৯. এডিট মোড হাইলাইট (পয়েন্ট ২) */
+.sa-editable-area:focus {
+    outline: 1px dashed #3498db;
+    background: rgba(52, 152, 219, 0.05);
+}
